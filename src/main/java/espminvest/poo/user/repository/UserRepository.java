@@ -18,4 +18,7 @@ public interface UserRepository extends CrudRepository<UserModel, Integer>  {
     @Override
     Iterable<UserModel> findAll();
 
+    @Override
+    void deleteById(Integer id);
+
 }

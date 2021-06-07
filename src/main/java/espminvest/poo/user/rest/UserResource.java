@@ -39,4 +39,11 @@ public class UserResource implements UserController {
     public List<UserBean> getUsers() {
         return userService.listAll();
     }
+
+    @Override
+    public void deleteUser(String id) {
+        Integer userId = Integer.parseInt(id);
+        userService.delete(userId);
+
+    }
 }
