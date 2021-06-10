@@ -7,6 +7,7 @@ import espminvest.poo.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,8 @@ public class UserResource implements UserController {
         Integer userId = Integer.parseInt(id);
         UserBean foundUser = Optional.ofNullable(userService.findBy(userId)).orElseThrow();
 
-        if (foundUser == null) {
+        // ERROR -> When user not found not throwing exception (use try catch ?)
+        if(foundUser == null){
             throw new RecordNotFoundException(id.toString());
         }
 
@@ -44,6 +46,5 @@ public class UserResource implements UserController {
     public void deleteUser(String id) {
         Integer userId = Integer.parseInt(id);
         userService.delete(userId);
-
     }
 }

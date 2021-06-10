@@ -1,6 +1,5 @@
 package espminvest.poo.user.repository;
 
-import espminvest.poo.user.common.datatype.UserBean;
 import espminvest.poo.user.model.UserModel;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,9 +15,10 @@ public interface UserRepository extends CrudRepository<UserModel, Integer>  {
     Optional<UserModel> findById(Integer id);
 
     @Override
-    Iterable<UserModel> findAll();
+    List<UserModel> findAll();
 
     @Override
     void deleteById(Integer id);
+
 
 }
