@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @Service
@@ -26,10 +27,10 @@ public class UserService {
     }
 
     public List<UserBean> listAll() {
-        // ERROR -> Returning all the users with the same id
-        return userRepository.findAll()
-                .stream()
-                .map(userModel -> userModel.toBean())
+        return StreamSupport
+                .stream(userRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList())
+                .stream().map(UserModel::toBean)
                 .collect(Collectors.toList());
     }
 
